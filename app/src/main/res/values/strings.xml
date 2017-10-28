@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">KryptoConvert</string>
+    <string-array name="currency">
+        <item>Currency</item>
+        <item>NGR</item>
+        <item>USD</item>
+        <item>GBP</item>
+        <item>EUR</item>
+        <item>JPY</item>
+        <item>CAD</item>
+        <item>AUD</item>
+        <item>HKD</item>
+        <item>CHF</item>
+        <item>BHD</item>
+        <item>KYD</item>
+        <item>GIP</item>
+        <item>JOD</item>
+        <item>OMR</item>
+        <item>KWD</item>
+        <item>ETH</item>
+        <item>BTC</item>
+
+
+    </string-array>
+
+    <string-array name="crypto">
+        <item>CryptoCurrency</item>
+        <item>BTC</item>
+        <item>ETH</item>
+    </string-array>
+</resources>
