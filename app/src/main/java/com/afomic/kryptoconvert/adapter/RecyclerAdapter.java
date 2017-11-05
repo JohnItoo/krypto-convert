@@ -27,14 +27,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         void onItemClick(ConversionClass conversion);
     }
     private Context context;
-    private MainActivity mA;
     private List<ConversionClass> mConversionClass;
-    private onItemClickListener listener;
 
 
     public RecyclerAdapter(Context context, List<ConversionClass> conversionClass){
         this.context = context;
-        this.mConversionClass = conversionClass;
+        mConversionClass = conversionClass;
 
     }
     @Override
@@ -47,24 +45,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, final int position) {
         ConversionClass mConversionClass = this.mConversionClass.get(position);
         final String from = mConversionClass.getFrom();
-       final  String to = mConversionClass.getTo();
-       final double value = mConversionClass.getValue();
-            holder.textViewFrom .setText(from);
-            holder.textViewTo.setText(to);
-            holder.textVewToValue.setText(String.valueOf(value));
-            holder.cardView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view){
-
-                    Intent mIntent = new Intent(context, ConvertActivity.class);
-                    mIntent.putExtra("conversionValue",value);
-                    mIntent.putExtra("from",from);
-                    mIntent.putExtra("to", to);
-                    context.startActivity(mIntent);
-
-
-                }
-            });
+        final  String to = mConversionClass.getTo();
+        final double value = mConversionClass.getValue();
+        String conversionFrom=1+" "+from;
+        String conversionTo=to+" "+value;
+            holder.textViewFrom .setText(conversionFrom);
+            holder.textVewToValue.setText(conversionTo);
     }
 
     @Override
@@ -73,24 +59,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     return mConversionClass.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        LinearLayout linearLayout;
-        CardView cardView;
+    public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
         TextView textViewFrom;
         TextView textViewTo;
         TextView textVewToValue;
         public ViewHolder(View v){
-
             super(v);
-            context = v.getContext();
-        linearLayout = (LinearLayout) v.findViewById(R.id.cardLinearLay);
-            cardView = (CardView) v.findViewById(R.id.cardView);
             textViewFrom= (TextView) v.findViewById(R.id.from);
-            textViewTo= (TextView) v.findViewById(R.id.to);
             textVewToValue = (TextView) v.findViewById(R.id.toValue);
-    }
+            v.setOnClickListener(this);
+        }
 
+        @Override
+        public void onClick(View v) {
+            ConversionClass conversionClass = mConversionClass.get(getAdapterPosition());
+            Intent mIntent = new Intent(context, ConvertActivity.class);
+            mIntent.putExtra("conversionValue",conversionClass.getValue());
+            mIntent.putExtra("from",conversionClass.getFrom());
+            mIntent.putExtra("to", conversionClass.getTo());
+            context.startActivity(mIntent);
+        }
     }
 
 

@@ -21,7 +21,7 @@ import org.w3c.dom.Text;
  * Created by rechael on 10/23/2017.
  */
 
-        public class ConvertActivity extends AppCompatActivity {
+public class ConvertActivity extends AppCompatActivity {
    Integer input;
     Double result;
     @Override
@@ -31,29 +31,53 @@ import org.w3c.dom.Text;
 
 
         ActionBar mActionBar = getSupportActionBar();
-        mActionBar.setDisplayHomeAsUpEnabled(true);
-       final double conversionValue = getIntent().getDoubleExtra("conversionValue",0.00);
+        if(mActionBar!=null){
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        final double conversionValue = getIntent().getDoubleExtra("conversionValue",0.00);
         final String cryptoString = getIntent().getStringExtra("from");
         final String currencyString = getIntent().getStringExtra("to");
         String conv = String.valueOf(conversionValue);
         final TextView putCurrency = (TextView) findViewById(R.id.put_currency);
         putCurrency.setVisibility(View.INVISIBLE);
-       final EditText currencyEdit = (EditText) findViewById(R.id.to_edit_text);
-        if (!currencyEdit.getText().toString().equals("")){
-        input =  Integer.parseInt(currencyEdit.getText().toString());
-            result =input *conversionValue;}
+        final EditText currencyEdit = (EditText) findViewById(R.id.to_edit_text);
+
 
     Button fromTo = (Button) findViewById(R.id.button_fromto);
-        fromTo.setText(cryptoString + " to " + currencyString);
+        String conversion=cryptoString + " to " + currencyString;
+        String conversionFrom= currencyString+ " to " +  cryptoString;
+
+        fromTo.setText(conversion);
         fromTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!currencyEdit.getText().toString().equals("")){
+                    input =  Integer.parseInt(currencyEdit.getText().toString());
+                    result =input *conversionValue;
+                }
                 putCurrency.setVisibility(View.VISIBLE);
-                Toast.makeText(ConvertActivity.this, String.valueOf(input), Toast.LENGTH_SHORT).show();
-
-                putCurrency.setText("1 " + cryptoString + "equals " +String.valueOf(result) + currencyString);
+ putCurrency.setText( currencyEdit.getText().toString()  + " " + cryptoString + " " + "equals "
+         + " " + String.valueOf(result) + currencyString);
             }
         });
+
+        Button toFromButton = (Button) findViewById(R.id.button_tofrom);
+        toFromButton.setText(conversionFrom);
+        toFromButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                     if (!currencyEdit.getText().toString().equals("")){
+                      input =  Integer.parseInt(currencyEdit.getText().toString());
+                   result = input *conversionValue;
+            }
+            putCurrency.setVisibility(View.VISIBLE);
+            putCurrency.setText(currencyEdit.getText().toString()+ " "+ currencyString
+            + " " + "equals " + " " + String.valueOf(result) + cryptoString);
+
+
+            }
+        });
+
 
 
         //set Text to V

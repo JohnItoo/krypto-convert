@@ -7,60 +7,49 @@
     android:layout_height="match_parent"
     tools:context="com.afomic.kryptoconvert.activity.MainActivity"
     android:orientation="vertical">
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp">
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       >
-
-
-       <Spinner
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-          android:layout_weight="1"
-           android:id="@+id/crypto"/>
-
-       <Spinner
-           android:layout_width= "0dp"
-           android:id="@+id/currency"
-           android:layout_weight="1"
-           android:layout_height="wrap_content"/>
-   </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/go_to"
-        android:layout_gravity="center"
-        android:text="Go"
-        android:background="#7e878e"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.RecyclerView
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recykler_view"
-            android:layout_marginTop="10dp"
-            android:background="#7e878e">
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Spinner
+                    android:layout_width="0dp"
+                    android:padding="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/crypto"/>
+                <Spinner
+                    android:layout_width= "0dp"
+                    android:padding="8dp"
+                    android:id="@+id/currency"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
-        </android.support.v7.widget.RecyclerView>
+            <Button
+                android:id="@+id/go_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:background="@color/colorAccent"
+                android:text="Convert"
+                android:textColor="#fff"/>
 
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
-    </LinearLayout>
-
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recykler_view"
+        android:layout_marginTop="10dp"/>
 
 
 </LinearLayout>
